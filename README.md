@@ -2,6 +2,8 @@
 
 -- Created a Create-React-app
 -- configured a tailwind css
+-- Header
+-- Login Form
 
 # Netflix
  login page
