@@ -3,7 +3,20 @@
 -- Created a Create-React-app
 -- configured a tailwind css
 -- Header
--- Login Form
+--routing of app 
+-- Login Form / sign in form
+-- sign up form
+-- form validation 
+-- useRef Hook
+-- firebase setup
+-- deploying our app to production
+-- create sign up user account
+-- implement sign in user api 
+-- created Redux store with userSlices
+-- implemented sign out
+-- updated profile
+-- fetch movies from TMDB movies
+
 
 # Netflix
  login page
