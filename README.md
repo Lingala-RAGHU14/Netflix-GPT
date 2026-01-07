@@ -16,6 +16,12 @@
 -- implemented sign out
 -- updated profile
 -- fetch movies from TMDB movies
+-- bug fixed : sign up user display name and profile update
+-- bug fixed : when user is logged in it is redirected to browse" page and vice versa
+-- unsubscribed to the onAuthStateChanged callback (useEffect unsunscribe when auth changed )
+-- used a constants for hardcoded things 
+-- registered in TMDB & created a API & Access token
+-- get data from TMDB now playing movie list
 
 
 # Netflix

@@ -6,9 +6,9 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <App />
-  </React.StrictMode>
+  // </React.StrictMode>  -- I comment because react renders twice for everytime when page loads reason why i removed it 
 );
 
 // If you want to start measuring performance in your app, pass a function

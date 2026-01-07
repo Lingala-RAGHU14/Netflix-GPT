@@ -7,6 +7,7 @@ import { auth } from "../utils/Firebase"
 import {useDispatch} from "react-redux";
 import {addUser} from "../utils/userSlice";
 import {updateProfile } from "firebase/auth";
+import { PROFILE_PIC } from "../utils/constants";
 
 
 
@@ -37,8 +38,8 @@ const Login = () => {
         // Signed up 
         const user = userCredential.user;
         updateProfile(user, {
-        displayName: name.current.value , photoURL: "https://media.licdn.com/dms/image/v2/D5603AQGQtUxLPN4NoA/profile-displayphoto-scale_200_200/B56ZqQdvfgHQAY-/0/1763360309661?e=1768435200&v=beta&t=3kW58J6lxkO_RiFiWc5J3n1leRzihCJPOqO07zsPpqk"
-        }).then(() => {
+        displayName: name.current.value , photoURL: PROFILE_PIC
+        }).then(() => { 
             const {uid,email,displayName,photoURL} = auth.currentUser;
             dispatch(addUser({uid: uid, email: email,displayName: displayName, photoURL: photoURL})) 
         
@@ -64,6 +65,7 @@ const Login = () => {
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
+    navigate("/browse")
     console.log(user)
     
     // ...

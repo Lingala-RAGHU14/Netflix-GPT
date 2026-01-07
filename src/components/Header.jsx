@@ -1,30 +1,58 @@
 import { signOut } from "firebase/auth";
 import {auth} from "../utils/Firebase";
 import {useNavigate} from "react-router-dom"
-import {useSelector} from "react-redux";
+import {useEffect} from "react"
+import {useSelector,useDispatch} from "react-redux";
+import { onAuthStateChanged } from "firebase/auth";
+import { addUser, removeUser } from "../utils/userSlice";
+import { LOGO } from "../utils/constants";
 const Header = () => {
-    const navigate = useNavigate()
     const user = useSelector(store => store.user)
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
 
     const handleSignOut = () => {
         signOut(auth).then(() => {
         // Sign-out successful.
-        navigate("/")
-
+        
+        
         }).catch((error) => {
         // An error happened.
         });
     }
-
+     useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+          if (user) {
+            // User is signed in, see docs for a list of available properties
+            // https://firebase.google.com/docs/reference/js/auth.user
+            const { uid, email, displayName, photoURL } = user;
+            dispatch(
+              addUser({
+                uid: uid,
+                email: email,
+                displayName: displayName,
+                photoURL: photoURL,
+              })
+            );
+            navigate("/browse")
+            // ...
+          } else {
+            // User is signed out
+            dispatch(removeUser());
+            navigate("/")
+          }
+        });
+        return () => unsubscribe
+      }, [dispatch]);
     return (
         <div className="absolute w-screen py-2 px-10 bg-gradient-to-b  from-black z-10 flex justify-between">
             <img 
             className="w-44"
-            src="
-            https://help.nflxext.com/helpcenter/OneTrust/oneTrust_production_2025-12-03/consent/87b6a5c0-0104-4e96-a291-092c11350111/019ae4b5-d8fb-7693-90ba-7a61d24a8837/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png" alt="logo"  />
+            src={LOGO} alt="logo"  />
 
             <div className="flex">
-                {user && <img src={user.photoURL} alt="photoURL" className="w-12 m-2 p-3/12 h-12" />}
+                {user &&  <img src={user.photoURL} alt="photoURL" className="w-12 m-2 p-3/12 h-12" />}
+                {user && user.displayName && <span className="text-white m-4 p-2">{user.displayName}</span>}
                 {
                   user &&  <button className="font-bold text-white bg-red-500 m-4 p-2 rounded-lg" onClick={handleSignOut}>Sign Out</button>
                 }
