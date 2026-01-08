@@ -3,21 +3,26 @@ import NowPlayingMovies from "../Hooks/useNowPlayingMovies"
 import Header from "./Header"
 import MainContainer from "./MainContainer"
 import SecondaryContainer from "./SecondaryContainer";
-import VideoBackground from "./VideoBackground"
+import VideoBackground from "./VideoBackground";
+import { useSelector } from "react-redux";
 
 
 const Browse = () => {
     
-    
-NowPlayingMovies()
+    NowPlayingMovies()
+
+    const movies = useSelector((store) => store.movies?.nowPlayingMovies);
+    const movieID = movies ? movies[0]?.id : null;
 
     return (
       <>
+      <div className="h-screen">
+       <VideoBackground movieID={movieID} />
        <Header />
-       <VideoBackground  />
        <MainContainer />
        
        <SecondaryContainer />
+       </div>
        </>
     /* 
     -MainContainer

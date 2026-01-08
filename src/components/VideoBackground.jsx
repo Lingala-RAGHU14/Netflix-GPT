@@ -2,9 +2,7 @@ import { useSelector } from "react-redux";
 import useTrailerVideo from "../Hooks/useTrailerVideo";
 
 const VideoBackground = ({ movieID }) => {
-  const trailerVideo = useSelector(
-    (store) => store?.movies?.movieTrailer
-  );
+  const trailerVideo = useSelector((store) => store?.movies?.movieTrailer);
 
   // ✅ hook is safe because it ignores undefined
   useTrailerVideo(movieID);
@@ -13,15 +11,12 @@ const VideoBackground = ({ movieID }) => {
   if (!trailerVideo) return null;
 
   return (
-    <div className="absolute">
+    <div className=" w-screen aspect-video absolute ">
       <iframe
-        width="100%"
-        height="100%"
-        src={`https://www.youtube.com/embed/${trailerVideo.key}?autoplay=1&mute=1`}
+        className="w-screen  aspect-video"
+        src={`https://www.youtube.com/embed/${trailerVideo.key}?autoplay=1&mute=1&loop=1`}
         title="YouTube video player"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
+        allow=""
       ></iframe>
     </div>
   );

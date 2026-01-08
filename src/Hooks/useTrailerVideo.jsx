@@ -15,8 +15,6 @@ const useTrailerVideo = (movieID) => {
           `https://api.themoviedb.org/3/movie/${movieID}/videos?language=en-US`,
           API_OPTIONS
         );
-        
-
         const json = await response.json();
         console.log("TMDB video response:", json);
 

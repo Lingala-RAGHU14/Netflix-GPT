@@ -22,6 +22,14 @@
 -- used a constants for hardcoded things 
 -- registered in TMDB & created a API & Access token
 -- get data from TMDB now playing movie list
+-- custom hook for nowPlayingMovie
+-- create movie slice
+-- update store with the movie data
+-- planning for mainContainer & secondary container
+-- fetch data for trailer video
+-- update store with the trailer video data
+-- embedded the youtube video and make it autoplay and mute
+-- added tailwind classes to maincontainer to look awsome
 
 
 # Netflix
